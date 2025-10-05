@@ -1,41 +1,51 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TraveLight</title>
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    body { margin:0; font-family: sans-serif; background:#fafafa; color:#333; }
-    header {
-      position: fixed;
-      top:0; left:0; right:0;
-      display:flex; align-items:center;
-      background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(6px);
-      padding: 6px 20px;
-      box-shadow:0 2px 4px rgba(0,0,0,0.1);
-      z-index:1000;
-    }
-    header img.logo {
-      height:40px; margin-right:20px;
-    }
-    nav a {
-      margin:0 10px; text-decoration:none; color:#333; font-weight:bold;
-    }
-    section {
-      padding:100px 20px 60px; /* 余白を入れてヘッダーに隠れない */
-      max-width:900px;
-      margin:0 auto;
-    }
-    h2 { text-align:center; font-size:1.5em; margin-bottom:20px; }
-    .creator { background:#fff; padding:20px; margin:20px 0; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
-    .icons a { margin-right:10px; display:inline-block; }
-    .icons svg { width:24px; height:24px; vertical-align:middle; }
-  </style>
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+  body { margin:0; font-family: sans-serif; background:#fafafa; color:#333; }
+
+  header {
+    position: fixed;
+    top:0; left:0; right:0;
+    display:flex; align-items:center; justify-content:space-between;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(6px);
+    padding: 12px 40px; /* ヘッダー全体の余白を増やす */
+    box-shadow:0 2px 4px rgba(0,0,0,0.1);
+    z-index:1000;
+    height:120px; /* ヘッダー自体を大きく */
+  }
+
+  header img.logo {
+    height:120px; /* ロゴを3倍に */
+    margin-right:20px;
+  }
+
+  nav a {
+    margin:0 15px; 
+    text-decoration:none; 
+    color:#333; 
+    font-weight:bold;
+    font-size:1.2em; /* 文字も大きくして見栄えを揃える */
+  }
+
+  section {
+    padding:140px 20px 60px; /* ヘッダーの高さに合わせて余白を調整 */
+    max-width:900px;
+    margin:0 auto;
+  }
+
+  h2 { text-align:center; font-size:1.5em; margin-bottom:20px; }
+  .creator { background:#fff; padding:20px; margin:20px 0; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+  .icons a { margin-right:10px; display:inline-block; }
+  .icons svg { width:24px; height:24px; vertical-align:middle; }
+</style>
 </head>
 <body>
   <header>
