@@ -8,7 +8,6 @@
   html { scroll-behavior: smooth; }
   body { margin:0; font-family: sans-serif; background:#fafafa; color:#333; }
 
-  /* ヘッダー */
   header {
     position: fixed;
     top:0; left:0; right:0;
@@ -27,15 +26,15 @@
   nav a { text-decoration:none; color:#333; font-weight:bold; font-size:1.2em; }
 
   /* トップ画像 */
-  .top-image {
-    width:100%;
-    height:400px;
-    background:url('travelightlogolong.jpg') no-repeat center center;
-    background-size:cover;
+  .top-image-container img { width:100%; height:auto; display:block; }
+
+  /* セクションスタイル */
+  section {
+    padding:60px 20px 60px;
+    max-width:900px;
+    margin:0 auto;
+    scroll-margin-top: 130px; /* ヘッダー高さ＋余裕 */
   }
-
-  section { padding:160px 20px 60px; max-width:900px; margin:0 auto; }
-
   section h2 { font-size:2em; color:#263b80; text-align:center; margin-bottom:20px; }
   section p { font-size:1.5em; line-height:1.6em; }
 
@@ -44,36 +43,22 @@
   .icons a { margin-right:10px; display:inline-block; }
   .icons svg { width:24px; height:24px; vertical-align:middle; }
 
-  /* ハンバーガーメニュー */
   .menu-toggle { display:none; flex-direction:column; cursor:pointer; }
   .menu-toggle div { width:25px; height:3px; background:#333; margin:4px 0; }
 
-  /* 動画レスポンシブ */
   .video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; }
   .video-container iframe { position: absolute; top:0; left:0; width:100%; height:100%; }
 
-  /* フォーム */
   .contact-iframe { width:100%; height:100vh; border:none; }
-
-  /* スクロール補正 */
-  :target::before { content:""; display:block; height:140px; margin-top:-140px; }
 
   @media (max-width: 768px) {
     header { flex-direction: row; justify-content: space-between; height:auto; padding:10px 20px; }
     header img.logo { height:80px; margin-bottom:0; }
-    nav { 
-      display:none; 
-      flex-direction: column; 
-      position:absolute; 
-      top:100%; left:0; right:0; 
-      background:#fff; 
-      padding:10px 0; 
-      box-shadow:0 2px 6px rgba(0,0,0,0.2); 
-    }
+    nav { display:none; flex-direction: column; position:absolute; top:100%; left:0; right:0; background:#fff; padding:10px 0; box-shadow:0 2px 6px rgba(0,0,0,0.2); }
     nav.show { display:flex; }
     nav a { font-size:1em; padding:10px 20px; }
     .menu-toggle { display:flex; }
-    section { padding:140px 15px 40px; }
+    section { padding:60px 15px 40px; }
     section h2 { font-size:2em; }
     section p { font-size:1.3em; }
     .creator h3 { font-size:2.2em; }
@@ -104,8 +89,9 @@
   </nav>
 </header>
 
-<!-- トップ画像 -->
-<div class="top-image"></div>
+<div class="top-image-container">
+  <img src="travelightlogolong.jpg" alt="トップ画像">
+</div>
 
 <section id="home">
   <h2>〜私たちについて〜</h2>
@@ -115,61 +101,28 @@
 
 <section id="creators">
   <h2>所属クリエイター紹介</h2>
-
+  <!-- 正親町 -->
   <div class="creator">
     <h3>正親町 / おおぎまち</h3>
     <p>こんにちは。鉄道系の動画を投稿している正親町と申します。​<br>
     関東に住む旅行、鉄道好きの学生。多くの鉄道系youtuberさんの動画に影響を受け、動画投稿を始めました。<br>
     鉄道、旅好きの方、そうでない方にも楽しんでもらえる企画を行っていきたいと考えております。</p>
-    <div class="icons">
-      <a href="https://www.youtube.com/@ogimachannel" target="_blank" aria-label="YouTube">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="red" d="M549.7 124.1c-6.3-23.7-24.9-42.3-48.6-48.6C458.2 64 288 64 288 64S117.8 64 74.9 75.5c-23.7 6.3-42.3 24.9-48.6 48.6C15.9 167 16 256 16 256s-.1 89 10.3 131.9c6.3 23.7 24.9 42.3 48.6 48.6C117.8 448 288 448 288 448s170.2 0 213.1-11.5c23.7-6.3 42.3-24.9 48.6-48.6C560.1 345 560 256 560 256s.1-89-10.3-131.9zM232 336V176l142 80-142 80z"/></svg>
-      </a>
-      <a href="https://x.com/ogimachi_2" target="_blank" aria-label="X">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227"><path fill="black" d="M714.163 519.284 1160.89 0H1059.19L667.137 450.887 356.132 0H0l468.492 681.821L0 1226.37h101.695l412.454-470.891 330.942 470.891H1200L714.137 519.284h.026ZM561.93 689.35l-47.837-67.398-379.166-533.24h163.205l305.822 430.72 47.837 67.398 401.229 566.798H889.815L561.93 689.35Z"/></svg>
-      </a>
-    </div>
   </div>
-
+  <!-- あきさめ -->
   <div class="creator">
     <h3>あきさめ / 限界トリップ</h3>
     <p>まだ知らない日本を知る」をモットーに関東を中心に節約旅を、時には日常を抜け出して「どこまでやれるのか」を徹底検証するチャンネルです！鉄道、バス、徒歩、果ては運と直感まかせのユニークなルールで、観光地巡りからグルメ探索まで幅広く挑戦！</p>
-    <div class="icons">
-      <a href="https://www.youtube.com/@Genkai-Trip" target="_blank">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="red" d="M549.7 124.1c-6.3-23.7-24.9-42.3-48.6-48.6C458.2 64 288 64 288 64S117.8 64 74.9 75.5c-23.7 6.3-42.3 24.9-48.6 48.6C15.9 167 16 256 16 256s-.1 89 10.3 131.9c6.3 23.7 24.9 42.3 48.6 48.6C117.8 448 288 448 288 448s170.2 0 213.1-11.5c23.7-6.3 42.3-24.9 48.6-48.6C560.1 345 560 256 560 256s.1-89-10.3-131.9zM232 336V176l142 80-142 80z"/></svg>
-      </a>
-      <a href="https://x.com/GenkaiTrip" target="_blank">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227"><path fill="black" d="M714.163 519.284 1160.89 0H1059.19L667.137 450.887 356.132 0H0l468.492 681.821L0 1226.37h101.695l412.454-470.891 330.942 470.891H1200L714.137 519.284h.026ZM561.93 689.35l-47.837-67.398-379.166-533.24h163.205l305.822 430.72 47.837 67.398 401.229 566.798H889.815L561.93 689.35Z"/></svg>
-      </a>
-    </div>
   </div>
-
+  <!-- あおみ -->
   <div class="creator">
     <h3>あおみ</h3>
-    <p>ご視聴ありがとうございます！このチャンネルでは、主に公共交通機関に関連した動画を投稿していきます！！「鉄道・交通があまり好きではない人も楽しめるエンターテイメント動画」を目標に日々動画を作ってます！！！よく対決企画とかで走ることがあると思います。#走鉄系Youtuber なるジャンルを開拓中(？)</p>
-    <div class="icons">
-      <a href="https://www.youtube.com/@aomikun" target="_blank">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="red" d="M549.7 124.1c-6.3-23.7-24.9-42.3-48.6-48.6C458.2 64 288 64 288 64S117.8 64 74.9 75.5c-23.7 6.3-42.3 24.9-48.6 48.6C15.9 167 16 256 16 256s-.1 89 10.3 131.9c6.3 23.7 24.9 42.3 48.6 48.6C117.8 448 288 448 288 448s170.2 0 213.1-11.5c23.7-6.3 42.3-24.9 48.6-48.6C560.1 345 560 256 560 256s.1-89-10.3-131.9zM232 336V176l142 80-142 80z"/></svg>
-      </a>
-      <a href="https://x.com/aomi_U10" target="_blank">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227"><path fill="black" d="M714.163 519.284 1160.89 0H1059.19L667.137 450.887 356.132 0H0l468.492 681.821L0 1226.37h101.695l412.454-470.891 330.942 470.891H1200L714.137 519.284h.026ZM561.93 689.35l-47.837-67.398-379.166-533.24h163.205l305.822 430.72 47.837 67.398 401.229 566.798H889.815L561.93 689.35Z"/></svg>
-      </a>
-    </div>
+    <p>ご視聴ありがとうございます！このチャンネルでは、主に公共交通機関に関連した動画を投稿していきます！！「鉄道・交通があまり好きではない人も楽しめるエンターテイメント動画」を目標に日々動画を作ってます！！！</p>
   </div>
-
+  <!-- たびと -->
   <div class="creator">
     <h3>たびと</h3>
-    <p>みなさんこんにちはー！たびとです。鉄道と旅行が好きな17歳の男子高校生です。西園寺さんに憧れYouTubeを始めました！このチャンネルでは、高校生の視点も交えながら公共交通機関を使った企画や旅行をして、その乗り物や地域の魅力を伝えるということをコンセプトにしています！普通に旅行することもありますが、検証企画や他のチャンネルにはないような独創的な企画をやることもあります！</p>
-    <div class="icons">
-      <a href="https://www.youtube.com/@TABITOCHANNEL" target="_blank">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="red" d="M549.7 124.1c-6.3-23.7-24.9-42.3-48.6-48.6C458.2 64 288 64 288 64S117.8 64 74.9 75.5c-23.7 6.3-42.3 24.9-48.6 48.6C15.9 167 16 256 16 256s-.1 89 10.3 131.9c6.3 23.7 24.9 42.3 48.6 48.6C117.8 448 288 448 288 448s170.2 0 213.1-11.5c23.7-6.3 42.3-24.9 48.6-48.6C560.1 345 560 256 560 256s.1-89-10.3-131.9zM232 336V176l142 80-142 80z"/></svg>
-      </a>
-      <a href="https://x.com/TABITOCHANNEL" target="_blank">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227"><path fill="black" d="M714.163 519.284 1160.89 0H1059.19L667.137 450.887 356.132 0H0l468.492 681.821L0 1226.37h101.695l412.454-470.891 330.942 470.891H1200L714.137 519.284h.026ZM561.93 689.35l-47.837-67.398-379.166-533.24h163.205l305.822 430.72 47.837 67.398 401.229 566.798H889.815L561.93 689.35Z"/></svg>
-      </a>
-    </div>
+    <p>みなさんこんにちはー！たびとです。鉄道と旅行が好きな17歳の男子高校生です。このチャンネルでは、高校生の視点も交えながら公共交通機関を使った企画や旅行をして、その乗り物や地域の魅力を伝えるということをコンセプトにしています！</p>
   </div>
-
 </section>
 
 <section id="activities">
@@ -177,7 +130,7 @@
   <div class="video-container">
     <iframe src="https://www.youtube.com/embed/Jd_bSdieOBc" frameborder="0" allowfullscreen></iframe>
   </div>
-  <p>我々は普通の旅行動画以外にも、【都市】をまるまるゲームにする対決企画を行ってきました。行動範囲がそこまで広くない学生であるからこそ、一つの地域に絞った面白い企画ができ、地方創生事業との相性も良いと考えております。</p>
+  <p>我々は普通の旅行動画以外にも、都市をまるまるゲームにする対決企画を行ってきました。行動範囲がそこまで広くない学生であるからこそ、一つの地域に絞った面白い企画ができ、地方創生事業との相性も良いと考えております。</p>
 </section>
 
 <section id="business">
@@ -191,15 +144,9 @@
 </section>
 
 <script>
-function toggleMenu() {
-  document.getElementById('nav').classList.toggle('show');
-}
-function closeMenu() {
-  document.getElementById('nav').classList.remove('show');
-}
-function scrollToTop() {
-  window.scrollTo({top:0, behavior:'smooth'});
-}
+function toggleMenu() { document.getElementById('nav').classList.toggle('show'); }
+function closeMenu() { document.getElementById('nav').classList.remove('show'); }
+function scrollToTop() { window.scrollTo({top:0, behavior:'smooth'}); }
 </script>
 
 </body>
