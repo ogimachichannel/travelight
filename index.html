@@ -2,8 +2,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travelight | インタラクティブ事業計画</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts (Inter and Noto Sans JP) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         /* Base styles */
@@ -120,11 +123,37 @@
             width: 100%;
             height: 100%;
         }
+
+        /* Hamburger Icon Animation - 修正済み */
+        .hamburger-line {
+            width: 24px;
+            height: 2px;
+            background-color: #000000; /* 黒に変更 */
+            display: block;
+            margin: 0; /* マージンを削除 */
+            transition: all 0.3s ease-in-out;
+        }
+        /* bodyに .menu-open クラスが付与された時のアニメーション */
+        .menu-open .hamburger-line-1 {
+            /* 24pxのボックス内で中央に移動させるため、11px移動 */
+            transform: translateY(11px) rotate(45deg);
+        }
+        .menu-open .hamburger-line-2 {
+            opacity: 0;
+        }
+        .menu-open .hamburger-line-3 {
+            /* 24pxのボックス内で中央に移動させるため、-11px移動 */
+            transform: translateY(-11px) rotate(-45deg);
+        }
+
     </style></head><body>
     
+    <!-- Header: Sticky navigation bar (z-50) -->
     <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo/Home link -->
             <a href="#top" class="text-3xl font-extrabold gradient-text" id="travelight-home">Travelight</a>
+            <!-- Desktop Menu (修正済み) -->
             <div class="hidden md:flex space-x-6 items-center">
                 <a href="#vision" class="text-gray-600 hover:text-amber-600 font-semibold">ホーム</a>
                 <a href="#activities" class="text-gray-600 hover:text-amber-600 font-semibold">活動について</a>
@@ -133,22 +162,42 @@
                 <a href="#future-extension" class="text-gray-600 hover:text-amber-600 font-semibold">未来への拡張</a>
                 <a href="#join" class="bg-amber-500 text-white px-5 py-2 rounded-full font-bold hover:bg-amber-600 transition-all shadow-md">Travelightに参加する</a>
             </div>
-            <button id="mobile-menu-btn" class="md:hidden text-gray-700">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            
+            <!-- Mobile Menu Button (Animated) - 修正済み -->
+            <!-- z-indexを z-51 より高く (z-52) して、開いたメニュー(z-51)より手前に表示 -->
+            <!-- flex, flex-col, justify-between で3本線を均等配置 -->
+            <button id="mobile-menu-btn" 
+                    class="md:hidden z-52 relative w-6 h-6 flex flex-col justify-between">
+                <span class="hamburger-line hamburger-line-1"></span>
+                <span class="hamburger-line hamburger-line-2"></span>
+                <span class="hamburger-line hamburger-line-3"></span>
             </button>
+
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
-            <a href="#vision" class="block text-gray-600 hover:text-amber-600 font-semibold">ホーム</a>
-            <a href="#activities" class="block text-gray-600 hover:text-amber-600 font-semibold">活動について</a>
-            <a href="#roadmap" class="block text-gray-600 hover:text-amber-600 font-semibold">計画</a>
-            <a href="#dashboard" class="block text-gray-600 hover:text-amber-600 font-semibold">私たちが目指す未来</a>
-            <a href="#future-extension" class="block text-gray-600 hover:text-amber-600 font-semibold">未来への拡張</a>
-            <a href="#join" class="block bg-amber-500 text-white px-5 py-2 rounded-full font-bold text-center">Travelightに参加する</a>
-        </div>
     </header>
 
+    <!-- Mobile Menu (Full screen, animated, top-aligned) - 修正済み -->
+    <!-- z-indexをヘッダー(z-50)より高く、ボタン(z-52)より低く (z-51) 設定 -->
+    <!-- justify-start と pt-28 で上部寄せ / items-center で横方向中央揃え -->
+    <div id="mobile-menu" 
+         class="fixed top-0 left-0 w-full h-screen bg-white/95 backdrop-blur-lg z-51 
+                flex flex-col items-center justify-start pt-28 space-y-8 
+                transform -translate-y-full transition-transform duration-300 ease-in-out md:hidden">
+        
+        <!-- リンクを中央揃えにするために text-center を追加 -->
+        <a href="#vision" class="text-2xl text-gray-700 hover:text-amber-600 font-semibold text-center">ホーム</a>
+        <a href="#activities" class="text-2xl text-gray-700 hover:text-amber-600 font-semibold text-center">活動について</a>
+        <a href="#roadmap" class="text-2xl text-gray-700 hover:text-amber-600 font-semibold text-center">計画</a>
+        <a href="#dashboard" class="text-2xl text-gray-700 hover:text-amber-600 font-semibold text-center">私たちが目指す未来</a>
+        <a href="#future-extension" class="text-2xl text-gray-700 hover:text-amber-600 font-semibold text-center">未来への拡張</a>
+        <a href="#join" class="bg-amber-500 text-white px-8 py-3 rounded-full text-xl font-bold hover:bg-amber-600 transition-all">Travelightに参加する</a>
+    </div>
+
+
+    <!-- Main Content -->
     <main class="container mx-auto px-6 py-12" id="top">
 
+        <!-- Section 1: Vision (Home) -->
         <section id="vision" class="text-center py-16 md:py-24">
             <h2 class="text-4xl md:text-6xl font-extrabold mb-6">
                 <span class="gradient-text">旅行業界</span>に<span class="gradient-text">ライト</span>を当てる。
@@ -159,25 +208,29 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                 <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-amber-400">
                     <h3 class="text-2xl font-bold text-amber-600 mb-3">Our Vision</h3>
-                    <p class="text-lg text-gray-600">旅行業界の発展に貢献し、<br>日本を盛り上げる。</p>
+                    <!-- スマートフォンでの改行(<br>)を削除 -->
+                    <p class="text-lg text-gray-600">旅行業界の発展に貢献し、日本を盛り上げる。</p>
                 </div>
                 <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-sky-400">
                     <h3 class="text-2xl font-bold text-sky-700 mb-3">Our Mission</h3>
-                    <p class="text-lg text-gray-600">「関東旅行連合」を結成し、<br>地域の活性化を担う存在となる。</p>
+                    <!-- スマートフォンでの改行(<br>)を削除 -->
+                    <p class="text-lg text-gray-600">「関東旅行連合」を結成し、地域の活性化を担う存在となる。</p>
                 </div>
             </div>
         </section>
 
+        <!-- Section 2: Activities -->
         <section id="activities" class="py-16">
             <h2 class="text-5xl font-extrabold text-center mb-16">活動について</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Urban Game Card (Clickable) -->
                 <div class="bg-white rounded-xl shadow-2xl overflow-hidden transition-transform duration-300 hover:scale-105 cursor-pointer" id="urban-game-card">
                     <div class="p-8">
                         <span class="text-5xl mb-4 block" role="img" aria-label="City">🏙️</span>
                         <h3 class="text-3xl font-bold text-gray-800 mb-4">都市ゲーム（イベント）関連</h3>
+                        <!-- スマートフォンでの改行(<br>)を削除 -->
                         <p class="text-gray-600 text-base mb-4 text-left">
-                            街全体を舞台にした謎解きやミッションクリア型の「都市ゲーム」を企画・運営。<br>
-                            参加者が楽しみながら地域の隠れた魅力を再発見できる体験を創出します。
+                            街全体を舞台にした謎解きやミッションクリア型の「都市ゲーム」を企画・運営。参加者が楽しみながら地域の隠れた魅力を再発見できる体験を創出します。
                         </p>
                         <ul class="list-none space-y-2">
                             <li class="flex items-center"><span class="text-emerald-500 mr-2">✔</span>参加型イベントの自主開催</li>
@@ -188,13 +241,14 @@
                     <div class="bg-gradient-to-r from-amber-400 to-pink-500 h-2 w-full"></div>
                 </div>
                 
+                <!-- Regional Revitalization Card -->
                 <div class="bg-white rounded-xl shadow-2xl overflow-hidden transition-transform duration-300 hover:scale-105">
                     <div class="p-8">
                         <span class="text-5xl mb-4 block" role="img" aria-label="Mountain">🏞️</span>
                         <h3 class="text-3xl font-bold text-gray-800 mb-4">地方創生関連</h3>
+                        <!-- スマートフォンでの改行(<br>)を削除 -->
                         <p class="text-gray-600 text-base mb-4 text-left">
-                            地域の「人」と「魅力」に光を当てます。オンライン・オフラインのイベントや<br>
-                            動画コンテンツを通じて、地域のファンを増やしていきます。
+                            地域の「人」と「魅力」に光を当てます。オンライン・オフラインのイベントや動画コンテンツを通じて、地域のファンを増やしていきます。
                         </p>
                         <ul class="list-none space-y-2">
                             <li class="flex items-center"><span class="text-emerald-500 mr-2">✔</span>魅力共有イベント（座談会・セミナー）</li>
@@ -207,6 +261,7 @@
             </div>
         </section>
 
+        <!-- Modal for YouTube Video -->
         <div id="videoModal" class="modal">
             <div class="modal-content">
                 <span class="close-button">&times;</span>
@@ -214,6 +269,7 @@
                 <div class="video-container">
                     <iframe id="youtubeVideo" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
+                <!-- "Open in new tab" link -->
                 <div class="text-center mt-4">
                     <a href="https://youtu.be/Hu6qpXkTCqE" target="_blank" class="text-sm font-semibold text-amber-600 hover:text-amber-800 transition duration-150 inline-flex items-center">
                         外部サイトで動画を視聴
@@ -223,6 +279,7 @@
             </div>
         </div>
 
+        <!-- Section 3: Roadmap -->
         <section id="roadmap" class="py-16">
             <h2 class="text-4xl font-extrabold text-center mb-6">1年間のロードマップ</h2>
             <p class="text-lg text-center text-gray-700 max-w-2xl mx-auto mb-16">
@@ -276,6 +333,7 @@
             </div>
         </section>
 
+        <!-- Section 4: Dashboard & Future Plans -->
         <section id="dashboard" class="py-16">
             <h2 class="text-4xl font-extrabold text-center mb-6">私たちが目指す未来</h2>
             <p class="text-lg text-center text-gray-700 max-w-2xl mx-auto mb-16">
@@ -304,7 +362,9 @@
                 </div>
             </div>
 
+            <!-- "Future Extension" section with ID for navigation -->
             <div class="mt-16" id="future-extension">
+                <!-- Updated title size -->
                 <h3 class="text-4xl font-bold text-center text-gray-800 mb-12">未来への拡張</h3>
                 <p class="text-lg text-center text-gray-700 max-w-2xl mx-auto mb-12">
                     1年間の活動は、さらに大きな未来へのステップです。イベント運営や案件で得たノハウと実績を元に、私たちはこれらの領域へと拡張していきます。
@@ -323,18 +383,18 @@
                     <div class="bg-white p-6 rounded-lg shadow-md text-center border-b-4 border-emerald-500">
                         <span class="text-4xl mb-3 block" role="img" aria-label="Consulting">📊</span>
                         <h4 class="text-2xl font-bold text-emerald-600 mb-3">コンサルティング</h4>
-                        <p class="text-gray-600">私たちが培った「地域の魅力を発掘し、発信するノハウ」を活かし、地域の課題を解決するパートナーとなります。</p>
+                        <p class="text-gray-600">私たちが培った「地域の魅力を発掘し、発信するノウハウ」を活かし、地域の課題を解決するパートナーとなります。</p>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Section 5: Join Us -->
         <section id="join" class="py-20 bg-gradient-to-r from-amber-500 to-pink-500 rounded-xl text-center">
             <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6">「最初の仲間」になりませんか？</h2>
+            <!-- スマートフォンでの改行(<br>)を削除 - 修正済み -->
             <p class="text-xl md:text-2xl text-white max-w-3xl mx-auto mb-10">
-                Travelightはまだ始まったばかり。<br>
-                だからこそ、参加する皆さん全員が主役です。<br>
-                あなたの「好き」や「得意」を活かせる場所が、ここに必ずあります。
+                Travelightはまだ始まったばかり。だからこそ、参加する皆さん全員が主役です。あなたの「好き」や「得意」を活かせる場所が、ここに必ずあります。
             </p>
             <div class="flex flex-wrap justify-center gap-3 px-6 max-w-3xl mx-auto mb-10">
                 <span class="bg-white/30 text-white text-sm font-semibold px-4 py-2 rounded-full">企画</span>
@@ -355,10 +415,12 @@
 
     </main>
 
+    <!-- Footer -->
     <footer class="text-center py-8 mt-12 border-t border-gray-200">
         <p class="text-gray-500">&copy; Travelight. All Rights Reserved.</p>
     </footer>
 
+    <!-- JavaScript -->
     <script>
         // Chart.js Tooltip Configuration
         const tooltipCallback = {
@@ -471,21 +533,38 @@
             }
         });
 
-        // Mobile menu toggle
+        // --- Mobile Menu Animation (修正済み) ---
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Close mobile menu when a link is clicked
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
+        const menuLinks = document.querySelectorAll('#mobile-menu a');
+        const body = document.body;
+
+        function toggleMenu() {
+            // bodyに .menu-open クラスをトグルして、CSS側でアニメーションを制御
+            const isOpen = body.classList.toggle('menu-open');
+            if (isOpen) {
+                mobileMenu.classList.remove('-translate-y-full');
+                mobileMenu.classList.add('translate-y-0');
+            } else {
+                mobileMenu.classList.add('-translate-y-full');
+                mobileMenu.classList.remove('translate-y-0');
+            }
+        }
+
+        // Open/Close menu (トグル)
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+
+        // Close menu when a link is clicked
+        menuLinks.forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+                if (body.classList.contains('menu-open')) {
+                    toggleMenu(); // メニューを閉じる
+                }
             });
         });
 
-        // Smooth scroll for all anchor links
+
+        // --- Smooth Scroll (修正済み) ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -523,6 +602,7 @@
         urbanGameCard.addEventListener('click', function() {
             videoModal.style.display = "flex"; // Show modal
             // Load video and add autoplay parameter when modal opens
+            // (Note: Autoplay may be blocked by browser policy)
             youtubeVideo.src = videoSrc + "?autoplay=1";
         });
 
